@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <TextView
+        android:id="@+id/schoolNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#3700B3"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#03DAC5" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/latitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/easting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/northing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/session"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/district"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/finance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/fax"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/website"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+    <TextView
+        android:id="@+id/religion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#888888" />
+
+</LinearLayout>
