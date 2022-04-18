@@ -11,16 +11,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="School No : " />
+            android:layout_weight="2"
+            android:text="@string/id" />
 
         <TextView
             android:id="@+id/schoolNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#3700B3"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -32,16 +32,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Category : " />
+            android:layout_weight="2"
+            android:text="@string/category" />
 
         <TextView
             android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#03DAC5" />
     </LinearLayout>
 
@@ -51,16 +51,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Name : " />
+            android:layout_weight="2"
+            android:text="@string/name" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -70,16 +70,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Address : " />
+            android:layout_weight="2"
+            android:text="@string/address" />
 
         <TextView
             android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -89,16 +89,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Longitude : " />
+            android:layout_weight="2"
+            android:text="@string/longitude" />
 
         <TextView
             android:id="@+id/longitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -108,16 +108,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Latitude : " />
+            android:layout_weight="2"
+            android:text="@string/latitude" />
 
         <TextView
             android:id="@+id/latitude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -127,16 +127,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Easting : " />
+            android:layout_weight="2"
+            android:text="@string/easting" />
 
         <TextView
             android:id="@+id/easting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -146,16 +146,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Northing : " />
+            android:layout_weight="2"
+            android:text="@string/northing" />
 
         <TextView
             android:id="@+id/northing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -165,16 +165,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Gender : " />
+            android:layout_weight="2"
+            android:text="@string/gender" />
 
         <TextView
             android:id="@+id/gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -184,16 +184,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Session : " />
+            android:layout_weight="2"
+            android:text="@string/session" />
 
         <TextView
             android:id="@+id/session"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -203,16 +203,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="District : " />
+            android:layout_weight="2"
+            android:text="@string/district" />
 
         <TextView
             android:id="@+id/district"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -222,16 +222,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Finance : " />
+            android:layout_weight="2"
+            android:text="@string/finance" />
 
         <TextView
             android:id="@+id/finance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -241,16 +241,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Level : " />
+            android:layout_weight="2"
+            android:text="@string/level" />
 
         <TextView
             android:id="@+id/level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -260,16 +260,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Phone : " />
+            android:layout_weight="2"
+            android:text="@string/phone" />
 
         <TextView
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -279,16 +279,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Fax : " />
+            android:layout_weight="2"
+            android:text="@string/fax" />
 
         <TextView
             android:id="@+id/fax"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -298,16 +298,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Website : " />
+            android:layout_weight="2"
+            android:text="@string/website" />
 
         <TextView
             android:id="@+id/website"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 
@@ -317,16 +317,16 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Religion : " />
+            android:layout_weight="2"
+            android:text="@string/religion" />
 
         <TextView
             android:id="@+id/religion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="20"
+            android:layout_weight="1"
             android:textColor="#888888" />
     </LinearLayout>
 

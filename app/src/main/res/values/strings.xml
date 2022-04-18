@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Hong Kong School Info</string>
+    <string name="id">School No : </string>
+    <string name="category">Category : </string>
+    <string name="name">Name : </string>
+    <string name="address">Address : </string>
+    <string name="longitude">Longitude : </string>
+    <string name="latitude">Latitude : </string>
+    <string name="easting">Easting : </string>
+    <string name="northing">Northing : </string>
+    <string name="gender">Gender : </string>
+    <string name="session">Session : </string>
+    <string name="district">Destrict : </string>
+    <string name="finance">Finance : </string>
+    <string name="level">Level : </string>
+    <string name="phone">Phone : </string>
+    <string name="fax">Fax : </string>
+    <string name="website">Website : </string>
+    <string name="religion">Religion : </string>
+
 </resources>
