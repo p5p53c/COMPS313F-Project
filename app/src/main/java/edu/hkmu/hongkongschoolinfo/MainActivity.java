@@ -2,26 +2,14 @@ package edu.hkmu.hongkongschoolinfo;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private ListView listView;
-    private final String jsonUrl = "https://www.edb.gov.hk/attachment/en/student-parents/sch-info/sch-search/sch-location-info/SCH_LOC_EDB.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +26,21 @@ public class MainActivity extends AppCompatActivity {
             jsonHandlerThread.join();
 
             //get the java bean
-            SchoolInfo schoolInfo = new SchoolInfo();
-            Log.i(TAG, "onCreate: " + schoolInfo.schoolList.get(2).getADDRESS());
-
-
+            SimpleAdapter adapter = new SimpleAdapter(
+                    this,
+                    SchoolList.schoolList,
+                    R.layout.list_view_layout,
+                    new String[] { SchoolList.SCHOOLNO, SchoolList.NAME, SchoolList.CATEGORY,
+                            SchoolList.ADDRESS, SchoolList.LONGITUDE, SchoolList.LATITUDE,
+                    SchoolList.EASTING, SchoolList.NORTHING, SchoolList.GENDER, SchoolList.SESSION,
+                    SchoolList.DISTRICT, SchoolList.FINANCE, SchoolList.LEVEL, SchoolList.PHONE,
+                    SchoolList.FAX, SchoolList.WEBSITE, SchoolList.RELIGION},
+                    new int[] { R.id.schoolNo, R.id.name, R.id.category, R.id.address, R.id.longitude,
+                    R.id.latitude, R.id.easting, R.id.northing, R.id.gender, R.id.session, R.id.district,
+                    R.id.finance, R.id.level, R.id.phone, R.id.fax, R.id.website, R.id.religion}
+            );
+            // Associate the adapter with the ListView
+            listView.setAdapter(adapter);
 
             // Create an adapter object that accommodates a data list of items to views that becomes children of an adapter view
             // i.e. the Adapter object acts as a bridge between an ListView and the contacts for that view

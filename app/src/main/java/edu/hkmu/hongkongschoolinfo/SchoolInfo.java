@@ -42,9 +42,6 @@ public class SchoolInfo {
     @SerializedName("AF")
     private String RELIGION;
 
-    public SchoolInfo() {
-    }
-
     public SchoolInfo(String SCHOOLNO, String CATEGORY, String NAME, String ADDRESS, String LONGITUDE, String LATITUDE, String EASTING, String NORTHING, String GENDER, String SESSION, String DISTRICT, String FINANCE, String LEVEL, String PHONE, String FAX, String WEBSITE, String RELIGION) {
         this.SCHOOLNO = SCHOOLNO;
         this.CATEGORY = CATEGORY;
