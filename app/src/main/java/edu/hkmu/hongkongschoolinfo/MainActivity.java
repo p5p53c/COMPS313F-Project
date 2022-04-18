@@ -37,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             jsonHandlerThread.join();
 
+            //get the java bean
+            SchoolInfo schoolInfo = new SchoolInfo();
+            Log.i(TAG, "onCreate: " + schoolInfo.schoolList.get(2).getADDRESS());
+
+
+
             // Create an adapter object that accommodates a data list of items to views that becomes children of an adapter view
             // i.e. the Adapter object acts as a bridge between an ListView and the contacts for that view
         } catch (InterruptedException e) {

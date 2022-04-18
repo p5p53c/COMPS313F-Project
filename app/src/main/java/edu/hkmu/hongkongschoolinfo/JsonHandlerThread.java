@@ -19,13 +19,18 @@ public class JsonHandlerThread extends Thread {
     @Override
     public void run() {
         try {
+            //parse String to URL
             URL url = new URL(jsonUrl);
             Gson gson = new Gson();
 
+            //get json from URL
             InputStreamReader inputStream = new InputStreamReader(url.openStream());
             Type schoolType = new TypeToken<ArrayList<SchoolInfo>>(){}.getType();
+            //store json to arraylist
             ArrayList<SchoolInfo> schools = gson.fromJson(inputStream, schoolType);
             Log.i(TAG, "run: " + schools);
+            //store arraylist to the java bean
+            SchoolInfo.schoolList = schools;
             //Log.i(TAG, "run: " + schoolInfos.get(1));
         } catch (IOException e) {
             Log.e(TAG, "JsonHandlerThread.run: " + e.getMessage());

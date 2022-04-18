@@ -2,6 +2,9 @@ package edu.hkmu.hongkongschoolinfo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // A utility class for creating contact list
 public class SchoolInfo {
     @SerializedName("A")
@@ -38,6 +41,9 @@ public class SchoolInfo {
     private String WEBSITE;
     @SerializedName("AF")
     private String RELIGION;
+
+    public SchoolInfo() {
+    }
 
     public SchoolInfo(String SCHOOLNO, String CATEGORY, String NAME, String ADDRESS, String LONGITUDE, String LATITUDE, String EASTING, String NORTHING, String GENDER, String SESSION, String DISTRICT, String FINANCE, String LEVEL, String PHONE, String FAX, String WEBSITE, String RELIGION) {
         this.SCHOOLNO = SCHOOLNO;
@@ -126,4 +132,6 @@ public class SchoolInfo {
     public String getRELIGION() {
         return RELIGION;
     }
+
+    public static List<SchoolInfo> schoolList = new ArrayList<>();
 }
