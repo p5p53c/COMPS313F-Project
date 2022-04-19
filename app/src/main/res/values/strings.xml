@@ -113,4 +113,9 @@
         <item>OTHERS</item>
     </string-array>
 
+    <string-array name="contact">
+        <item>Phone</item>
+        <item>Website</item>
+    </string-array>
+
 </resources>

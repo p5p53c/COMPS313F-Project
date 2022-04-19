@@ -1,5 +1,7 @@
 package edu.hkmu.hongkongschoolinfo;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +19,9 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private SearchView search_bar;
-    private ListView listView;
     private Spinner staticSpinner, dynamicSpinner;
+    private ListView listView;
+    private Dialog contentDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             setUpList();
             searchWidget();
+            setUpOnclickListener();
 
             // Create an adapter object that accommodates a data list of items to views that becomes children of an adapter view
             // i.e. the Adapter object acts as a bridge between an ListView and the contacts for that view
@@ -238,5 +241,15 @@ public class MainActivity extends AppCompatActivity {
         }
         SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, filterSchool);
         listView.setAdapter(adapter);
+    }
+
+    private void setUpOnclickListener() {
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            School selectSchool = (School) (listView.getItemAtPosition(position));
+            Intent schoolContact = new Intent(getApplicationContext(), ContactDialog.class);
+            schoolContact.putExtra("phone", selectSchool.getPHONE());
+            schoolContact.putExtra("website", selectSchool.getWEBSITE());
+            startActivity(schoolContact);
+        });
     }
 }
