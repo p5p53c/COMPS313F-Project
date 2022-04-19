@@ -12,12 +12,6 @@
         android:text="School Content" />
 
     <Button
-        android:id="@+id/favourite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add to favourite"/>
-
-    <Button
         android:id="@+id/dialog_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

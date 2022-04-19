@@ -1,6 +1,5 @@
 package edu.hkmu.hongkongschoolinfo;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,22 +7,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
-    private SearchView search_bar;
+    private EditText search_bar;
     private Spinner staticSpinner, dynamicSpinner;
+    private Button filterButton;
     private ListView listView;
-    private Dialog contentDialog;
-    Button favourite;
+    private String[] filter = new String[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +33,8 @@ public class MainActivity extends AppCompatActivity {
         search_bar = findViewById(R.id.search_bar);
         staticSpinner = findViewById(R.id.staticSpinner);
         dynamicSpinner = findViewById(R.id.dynamicSpinner);
+        filterButton = findViewById(R.id.filterButton);
         listView = findViewById(R.id.listview);
-        favourite = findViewById(R.id.favourite);
-
-        String[] filer = new String[2];
 
         // Create an adapter object that accommodates a data list of items to views that becomes children of an adapter view
         // i.e. the Adapter object acts as a bridge between an ListView and the contacts for that view
@@ -53,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
             jsonHandlerThread.join();
 
             setUpList();
-            searchWidget();
             setUpOnclickListener();
+            filterButtonOnclickListener();
 
             // Create an adapter object that accommodates a data list of items to views that becomes children of an adapter view
             // i.e. the Adapter object acts as a bridge between an ListView and the contacts for that view
@@ -66,9 +64,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("Static Spinner", "Position : " + position);
-                filer[0] = position + "";
+                filter[0] = position + "";
                 ArrayAdapter<CharSequence> dynamicAdapter;
                 switch (position) {
+                    case 0:
+                        dynamicSpinner.setAdapter(null);
+                        filter[1] = "";
+                        break;
                     case 1:
                         dynamicAdapter = ArrayAdapter
                                 .createFromResource(MainActivity.this, R.array.categoryfilter,
@@ -120,15 +122,6 @@ public class MainActivity extends AppCompatActivity {
                         dynamicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         dynamicSpinner.setAdapter(dynamicAdapter);
                         break;
-                    case 8:
-                        ArrayList<School> favouriteSchool = new ArrayList<>();
-                        for (School school :
-                                School.allSchoolList) {
-                            if (school.getfavourite())
-                                favouriteSchool.add(school);
-                        }
-                        SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, favouriteSchool);
-                        listView.setAdapter(adapter);
                 }
             }
 
@@ -141,9 +134,8 @@ public class MainActivity extends AppCompatActivity {
         dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.v("Dynamic Spinner", "Position : " + position + ", " + (String) parent.getItemAtPosition(position));
-                filer[1] = (String) parent.getItemAtPosition(position);
-                filterSchool(filer);
+                Log.v("Dynamic Spinner", "Position : " + position + ", " + parent.getItemAtPosition(position));
+                filter[1] = (String) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -160,99 +152,84 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    private void searchWidget() {
-
-        search_bar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
+    private ArrayList<School> searchWidget(ArrayList<School> searchSchool) {
+        String searchText = search_bar.getText().toString();
+        if (searchText.length() > 0) {
+            for (School school :
+                    School.allSchoolList) {
+                if (school.getNAME().toLowerCase(Locale.ROOT).contains(searchText.toLowerCase())) {
+                    searchSchool.add(school);
+                }
             }
-
-            @Override
-            public boolean onQueryTextChange(String searchText) {
-                if (searchText.length() <= 0) {
-                    ArrayList<School> searchSchool = new ArrayList<>();
-                    for (School school :
-                            School.allSchoolList) {
-                        if (school.getNAME().toLowerCase(Locale.ROOT).contains(searchText.toLowerCase())) {
-                            searchSchool.add(school);
-                        }
-
-                    }
-                    SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, searchSchool);
-                    listView.setAdapter(adapter);
-                } else
-                    setUpList();
-                return false;
-            }
-        });
+        } else {
+            searchSchool.addAll(School.allSchoolList);
+        }
+        return searchSchool;
     }
 
-    private void filterSchool(String[] filter) {
-        ArrayList<School> filterSchool = new ArrayList<>();
+    private ArrayList<School> schoolFilter(ArrayList<School> filterSchool) {
+        ArrayList<School> filterList = new ArrayList<>();
         switch (Integer.parseInt(filter[0])) {
             case 1:
                 for (School school :
-                        School.allSchoolList) {
+                        filterSchool) {
                     if (school.getCATEGORY().contains(filter[1])) {
-                        filterSchool.add(school);
+                        filterList.add(school);
                     }
                 }
                 break;
             case 2:
                 for (School school :
-                        School.allSchoolList) {
+                        filterSchool) {
                     if (school.getGENDER().contains(filter[1])) {
-                        filterSchool.add(school);
+                        filterList.add(school);
                     }
                 }
                 break;
             case 3:
                 for (School school :
-                        School.allSchoolList) {
+                        filterSchool) {
                     if (school.getSESSION().contains(filter[1])) {
-                        filterSchool.add(school);
+                        filterList.add(school);
                     }
                 }
                 break;
             case 4:
                 for (School school :
-                        School.allSchoolList) {
+                        filterSchool) {
                     if (school.getDISTRICT().contains(filter[1])) {
-                        filterSchool.add(school);
+                        filterList.add(school);
                     }
                 }
                 break;
             case 5:
                 for (School school :
-                        School.allSchoolList) {
+                        filterSchool) {
                     if (school.getFINANCE().contains(filter[1])) {
-                        filterSchool.add(school);
+                        filterList.add(school);
                     }
                 }
                 break;
             case 6:
                 for (School school :
-                        School.allSchoolList) {
+                        filterSchool) {
                     if (school.getLEVEL().contains(filter[1])) {
-                        filterSchool.add(school);
+                        filterList.add(school);
                     }
                 }
                 break;
             case 7:
                 for (School school :
-                        School.allSchoolList) {
+                        filterSchool) {
                     if (school.getRELIGION().contains(filter[1])) {
-                        filterSchool.add(school);
+                        filterList.add(school);
                     }
                 }
                 break;
             default:
-                setUpList();
-                break;
+                return filterSchool;
         }
-        SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, filterSchool);
-        listView.setAdapter(adapter);
+        return filterList;
     }
 
     private void setUpOnclickListener() {
@@ -261,18 +238,18 @@ public class MainActivity extends AppCompatActivity {
             Intent schoolContact = new Intent(getApplicationContext(), ContactDialog.class);
             schoolContact.putExtra("phone", selectSchool.getPHONE());
             schoolContact.putExtra("website", selectSchool.getWEBSITE());
-            schoolContact.putExtra("favourite", selectSchool.getfavourite());
             startActivity(schoolContact);
         });
-
-
     }
 
-    public void changeFavouriteStatus(School school) {
-        if (school.getfavourite()) {
-            school.setFavourite(false);
-        } else
-            school.setFavourite(true);
-
+    private void filterButtonOnclickListener() {
+        filterButton.setOnClickListener(v -> {
+            Log.v("Search Function", "Search Bar : " + search_bar.getText() + ", Filter : [" + filter[0] + ", " + filter[1] + "]");
+            ArrayList<School> filterList = new ArrayList<>();
+            filterList = searchWidget(filterList);
+            filterList = schoolFilter(filterList);
+            SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, filterList);
+            listView.setAdapter(adapter);
+        });
     }
 }
