@@ -42,6 +42,8 @@ public class School {
     @SerializedName("AF")
     private String RELIGION;
 
+    private boolean favourite;
+
     public School(String SCHOOLNO, String CATEGORY, String NAME, String ADDRESS, String LONGITUDE, String LATITUDE, String EASTING, String NORTHING, String GENDER, String SESSION, String DISTRICT, String FINANCE, String LEVEL, String PHONE, String FAX, String WEBSITE, String RELIGION) {
         this.SCHOOLNO = SCHOOLNO;
         this.CATEGORY = CATEGORY;
@@ -60,6 +62,7 @@ public class School {
         this.FAX = FAX;
         this.WEBSITE = WEBSITE;
         this.RELIGION = RELIGION;
+        this.favourite = false;
     }
 
     public String getSCHOOLNO() {
@@ -128,6 +131,14 @@ public class School {
 
     public String getRELIGION() {
         return RELIGION;
+    }
+
+    public boolean getfavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
 
     public static List<School> allSchoolList = new ArrayList<>();

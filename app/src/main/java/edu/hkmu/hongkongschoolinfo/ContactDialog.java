@@ -22,6 +22,7 @@ public class ContactDialog extends AppCompatActivity {
 
         Button dialog_phone = findViewById(R.id.dialog_phone);
         Button dialog_website = findViewById(R.id.dialog_website);
+        Button favourite = findViewById(R.id.favourite);
 
         int schoolPhoneNumber = 0;
 
@@ -42,6 +43,12 @@ public class ContactDialog extends AppCompatActivity {
             contact_missing.setVisibility(View.VISIBLE);
         }
 
+        boolean isFavourite = intent.getBooleanExtra("favourite", false);
+
+        if (isFavourite) {
+            favourite.setText("Remove from favourite");
+        }
+
         int finalSchoolPhoneNumber = schoolPhoneNumber;
         dialog_phone.setOnClickListener(v -> {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -54,7 +61,6 @@ public class ContactDialog extends AppCompatActivity {
             urlIntent.putExtra(EXTRA_MESSAGE, schoolWebsite);
             startActivity(urlIntent);
         });
-
 
     }
 }

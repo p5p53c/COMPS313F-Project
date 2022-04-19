@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Spinner;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner staticSpinner, dynamicSpinner;
     private ListView listView;
     private Dialog contentDialog;
+    Button favourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         staticSpinner = findViewById(R.id.staticSpinner);
         dynamicSpinner = findViewById(R.id.dynamicSpinner);
         listView = findViewById(R.id.listview);
+        favourite = findViewById(R.id.favourite);
 
         String[] filer = new String[2];
 
@@ -117,6 +120,15 @@ public class MainActivity extends AppCompatActivity {
                         dynamicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         dynamicSpinner.setAdapter(dynamicAdapter);
                         break;
+                    case 8:
+                        ArrayList<School> favouriteSchool = new ArrayList<>();
+                        for (School school :
+                                School.allSchoolList) {
+                            if (school.getfavourite())
+                                favouriteSchool.add(school);
+                        }
+                        SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, favouriteSchool);
+                        listView.setAdapter(adapter);
                 }
             }
 
@@ -249,7 +261,18 @@ public class MainActivity extends AppCompatActivity {
             Intent schoolContact = new Intent(getApplicationContext(), ContactDialog.class);
             schoolContact.putExtra("phone", selectSchool.getPHONE());
             schoolContact.putExtra("website", selectSchool.getWEBSITE());
+            schoolContact.putExtra("favourite", selectSchool.getfavourite());
             startActivity(schoolContact);
         });
+
+
+    }
+
+    public void changeFavouriteStatus(School school) {
+        if (school.getfavourite()) {
+            school.setFavourite(false);
+        } else
+            school.setFavourite(true);
+
     }
 }
