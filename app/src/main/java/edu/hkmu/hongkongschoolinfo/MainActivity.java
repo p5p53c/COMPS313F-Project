@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         dynamicSpinner = findViewById(R.id.dynamicSpinner);
         listView = findViewById(R.id.listview);
 
+        String[] filer = new String[2];
+
         // Create an adapter object that accommodates a data list of items to views that becomes children of an adapter view
         // i.e. the Adapter object acts as a bridge between an ListView and the contacts for that view
         JsonHandlerThread jsonHandlerThread = new JsonHandlerThread();
@@ -45,22 +47,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             jsonHandlerThread.join();
 
-            //get the java bean
-//            adapter = new SimpleAdapter(
-//                    this,
-//                    SchoolList.schoolList,
-//                    R.layout.list_view_layout,
-//                    new String[] { SchoolList.SCHOOLNO, SchoolList.NAME, SchoolList.CATEGORY,
-//                            SchoolList.ADDRESS, SchoolList.LONGITUDE, SchoolList.LATITUDE,
-//                    SchoolList.EASTING, SchoolList.NORTHING, SchoolList.GENDER, SchoolList.SESSION,
-//                    SchoolList.DISTRICT, SchoolList.FINANCE, SchoolList.LEVEL, SchoolList.PHONE,
-//                    SchoolList.FAX, SchoolList.WEBSITE, SchoolList.RELIGION},
-//                    new int[] { R.id.schoolNo, R.id.name, R.id.category, R.id.address, R.id.longitude,
-//                    R.id.latitude, R.id.easting, R.id.northing, R.id.gender, R.id.session, R.id.district,
-//                    R.id.finance, R.id.level, R.id.phone, R.id.fax, R.id.website, R.id.religion}
-//            );
-//            // Associate the adapter with the ListView
-//            listView.setAdapter(adapter);
             setUpList();
             searchWidget();
 
@@ -74,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("Static Spinner", "Position : " + position);
+                filer[0] = position + "";
                 ArrayAdapter<CharSequence> dynamicAdapter;
                 switch (position) {
                     case 1:
@@ -128,8 +115,6 @@ public class MainActivity extends AppCompatActivity {
                         dynamicSpinner.setAdapter(dynamicAdapter);
                         break;
                 }
-
-
             }
 
             @Override
@@ -142,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.v("Dynamic Spinner", "Position : " + position + ", " + (String) parent.getItemAtPosition(position));
+                filer[1] = (String) parent.getItemAtPosition(position);
+                filterSchool(filer);
             }
 
             @Override
@@ -168,18 +155,88 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String searchText) {
-                ArrayList<School> searchSchool = new ArrayList<>();
-                for (School school :
-                        School.allSchoolList) {
-                    if (school.getNAME().toLowerCase(Locale.ROOT).contains(searchText.toLowerCase())) {
-                        searchSchool.add(school);
-                    }
+                if (searchText.length() <= 0) {
+                    ArrayList<School> searchSchool = new ArrayList<>();
+                    for (School school :
+                            School.allSchoolList) {
+                        if (school.getNAME().toLowerCase(Locale.ROOT).contains(searchText.toLowerCase())) {
+                            searchSchool.add(school);
+                        }
 
-                }
-                SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, searchSchool);
-                listView.setAdapter(adapter);
+                    }
+                    SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, searchSchool);
+                    listView.setAdapter(adapter);
+                } else
+                    setUpList();
                 return false;
             }
         });
+    }
+
+    private void filterSchool(String[] filter) {
+        ArrayList<School> filterSchool = new ArrayList<>();
+        switch (Integer.parseInt(filter[0])) {
+            case 1:
+                for (School school :
+                        School.allSchoolList) {
+                    if (school.getCATEGORY().contains(filter[1])) {
+                        filterSchool.add(school);
+                    }
+                }
+                break;
+            case 2:
+                for (School school :
+                        School.allSchoolList) {
+                    if (school.getGENDER().contains(filter[1])) {
+                        filterSchool.add(school);
+                    }
+                }
+                break;
+            case 3:
+                for (School school :
+                        School.allSchoolList) {
+                    if (school.getSESSION().contains(filter[1])) {
+                        filterSchool.add(school);
+                    }
+                }
+                break;
+            case 4:
+                for (School school :
+                        School.allSchoolList) {
+                    if (school.getDISTRICT().contains(filter[1])) {
+                        filterSchool.add(school);
+                    }
+                }
+                break;
+            case 5:
+                for (School school :
+                        School.allSchoolList) {
+                    if (school.getFINANCE().contains(filter[1])) {
+                        filterSchool.add(school);
+                    }
+                }
+                break;
+            case 6:
+                for (School school :
+                        School.allSchoolList) {
+                    if (school.getLEVEL().contains(filter[1])) {
+                        filterSchool.add(school);
+                    }
+                }
+                break;
+            case 7:
+                for (School school :
+                        School.allSchoolList) {
+                    if (school.getRELIGION().contains(filter[1])) {
+                        filterSchool.add(school);
+                    }
+                }
+                break;
+            default:
+                setUpList();
+                break;
+        }
+        SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, filterSchool);
+        listView.setAdapter(adapter);
     }
 }

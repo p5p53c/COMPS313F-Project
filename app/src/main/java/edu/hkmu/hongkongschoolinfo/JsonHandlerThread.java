@@ -32,32 +32,6 @@ public class JsonHandlerThread extends Thread {
             schools.remove(0);
             //store arraylist to the java bean
             School.allSchoolList = schools;
-            //Log.i(TAG, "run: " + schoolInfos.get(1));
-
-            for (int i = 1; i < School.allSchoolList.size(); i++) {
-                String id = School.allSchoolList.get(i).getSCHOOLNO();
-                String category = School.allSchoolList.get(i).getCATEGORY();
-                String name = School.allSchoolList.get(i).getNAME();
-                String address = School.allSchoolList.get(i).getADDRESS();
-                String longitude = School.allSchoolList.get(i).getLONGITUDE();
-                String latitude = School.allSchoolList.get(i).getLATITUDE();
-                String easting = School.allSchoolList.get(i).getEASTING();
-                String northing = School.allSchoolList.get(i).getNORTHING();
-                String gender = School.allSchoolList.get(i).getGENDER();
-                String session = School.allSchoolList.get(i).getSESSION();
-                String district = School.allSchoolList.get(i).getDISTRICT();
-                String finance = School.allSchoolList.get(i).getFINANCE();
-                String level = School.allSchoolList.get(i).getLEVEL();
-                String phone = School.allSchoolList.get(i).getPHONE();
-                String fax = School.allSchoolList.get(i).getFAX();
-                String website = School.allSchoolList.get(i).getWEBSITE();
-                String religion = School.allSchoolList.get(i).getRELIGION();
-
-                SchoolList.addSchool(id, category, name, address,
-                        longitude, latitude, easting, northing, gender,
-                        session, district, finance, level, phone, fax,
-                        website, religion);
-            }
         } catch (IOException e) {
             Log.e(TAG, "JsonHandlerThread.run: " + e.getMessage());
         }
