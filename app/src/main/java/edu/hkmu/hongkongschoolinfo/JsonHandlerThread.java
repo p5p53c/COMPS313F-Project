@@ -25,32 +25,33 @@ public class JsonHandlerThread extends Thread {
 
             //get json from URL
             InputStreamReader inputStream = new InputStreamReader(url.openStream());
-            Type schoolType = new TypeToken<ArrayList<SchoolInfo>>(){}.getType();
+            Type schoolType = new TypeToken<ArrayList<School>>(){}.getType();
             //store json to arraylist
-            ArrayList<SchoolInfo> schools = gson.fromJson(inputStream, schoolType);
+            ArrayList<School> schools = gson.fromJson(inputStream, schoolType);
             Log.i(TAG, "run: " + schools);
+            schools.remove(0);
             //store arraylist to the java bean
-            SchoolInfo.schoolList = schools;
+            School.allSchoolList = schools;
             //Log.i(TAG, "run: " + schoolInfos.get(1));
 
-            for (int i = 1; i < SchoolInfo.schoolList.size(); i++) {
-                String id = SchoolInfo.schoolList.get(i).getSCHOOLNO();
-                String category = SchoolInfo.schoolList.get(i).getCATEGORY();
-                String name = SchoolInfo.schoolList.get(i).getNAME();
-                String address = SchoolInfo.schoolList.get(i).getADDRESS();
-                String longitude = SchoolInfo.schoolList.get(i).getLONGITUDE();
-                String latitude = SchoolInfo.schoolList.get(i).getLATITUDE();
-                String easting = SchoolInfo.schoolList.get(i).getEASTING();
-                String northing = SchoolInfo.schoolList.get(i).getNORTHING();
-                String gender = SchoolInfo.schoolList.get(i).getGENDER();
-                String session = SchoolInfo.schoolList.get(i).getSESSION();
-                String district = SchoolInfo.schoolList.get(i).getDISTRICT();
-                String finance = SchoolInfo.schoolList.get(i).getFINANCE();
-                String level = SchoolInfo.schoolList.get(i).getLEVEL();
-                String phone = SchoolInfo.schoolList.get(i).getPHONE();
-                String fax = SchoolInfo.schoolList.get(i).getFAX();
-                String website = SchoolInfo.schoolList.get(i).getWEBSITE();
-                String religion = SchoolInfo.schoolList.get(i).getRELIGION();
+            for (int i = 1; i < School.allSchoolList.size(); i++) {
+                String id = School.allSchoolList.get(i).getSCHOOLNO();
+                String category = School.allSchoolList.get(i).getCATEGORY();
+                String name = School.allSchoolList.get(i).getNAME();
+                String address = School.allSchoolList.get(i).getADDRESS();
+                String longitude = School.allSchoolList.get(i).getLONGITUDE();
+                String latitude = School.allSchoolList.get(i).getLATITUDE();
+                String easting = School.allSchoolList.get(i).getEASTING();
+                String northing = School.allSchoolList.get(i).getNORTHING();
+                String gender = School.allSchoolList.get(i).getGENDER();
+                String session = School.allSchoolList.get(i).getSESSION();
+                String district = School.allSchoolList.get(i).getDISTRICT();
+                String finance = School.allSchoolList.get(i).getFINANCE();
+                String level = School.allSchoolList.get(i).getLEVEL();
+                String phone = School.allSchoolList.get(i).getPHONE();
+                String fax = School.allSchoolList.get(i).getFAX();
+                String website = School.allSchoolList.get(i).getWEBSITE();
+                String religion = School.allSchoolList.get(i).getRELIGION();
 
                 SchoolList.addSchool(id, category, name, address,
                         longitude, latitude, easting, northing, gender,

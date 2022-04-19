@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // A utility class for creating contact list
-public class SchoolInfo {
+public class School {
     @SerializedName("A")
     private String SCHOOLNO;
     @SerializedName("B")
@@ -42,7 +42,7 @@ public class SchoolInfo {
     @SerializedName("AF")
     private String RELIGION;
 
-    public SchoolInfo(String SCHOOLNO, String CATEGORY, String NAME, String ADDRESS, String LONGITUDE, String LATITUDE, String EASTING, String NORTHING, String GENDER, String SESSION, String DISTRICT, String FINANCE, String LEVEL, String PHONE, String FAX, String WEBSITE, String RELIGION) {
+    public School(String SCHOOLNO, String CATEGORY, String NAME, String ADDRESS, String LONGITUDE, String LATITUDE, String EASTING, String NORTHING, String GENDER, String SESSION, String DISTRICT, String FINANCE, String LEVEL, String PHONE, String FAX, String WEBSITE, String RELIGION) {
         this.SCHOOLNO = SCHOOLNO;
         this.CATEGORY = CATEGORY;
         this.NAME = NAME;
@@ -130,5 +130,5 @@ public class SchoolInfo {
         return RELIGION;
     }
 
-    public static List<SchoolInfo> schoolList = new ArrayList<>();
+    public static List<School> allSchoolList = new ArrayList<>();
 }
