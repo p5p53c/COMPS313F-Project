@@ -46,6 +46,7 @@ public class ContactDialog extends AppCompatActivity {
         dialog_phone.setOnClickListener(v -> {
             Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:" + finalSchoolPhoneNumber));
+            startActivity(callIntent);
         });
 
         dialog_website.setOnClickListener(v -> {

@@ -19,7 +19,7 @@
     <string name="religion">Religion : </string>
 
     <string-array name="filter">
-        <item></item>
+        <item>All</item>
         <item>Category</item>
         <item>Gender</item>
         <item>Session</item>
