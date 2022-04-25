@@ -3,6 +3,8 @@ package edu.hkmu.hongkongschoolinfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +14,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.facebook.stetho.Stetho;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Stetho.initializeWithDefaults(this);
 
         search_bar = findViewById(R.id.search_bar);
         staticSpinner = findViewById(R.id.staticSpinner);
@@ -238,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
             Intent schoolContact = new Intent(getApplicationContext(), ContactDialog.class);
             schoolContact.putExtra("phone", selectSchool.getPHONE());
             schoolContact.putExtra("website", selectSchool.getWEBSITE());
+            schoolContact.putExtra("schoolno", selectSchool.getSCHOOLNO());
             startActivity(schoolContact);
         });
     }
@@ -251,5 +257,25 @@ public class MainActivity extends AppCompatActivity {
             SchoolAdapter adapter = new SchoolAdapter(getApplicationContext(), 0, filterList);
             listView.setAdapter(adapter);
         });
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        return (applyMenuOption(item) ||
+                super.onOptionsItemSelected(item));
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.options_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private boolean applyMenuOption(MenuItem item) {
+        int menuItemId = item.getItemId();
+        if (menuItemId == R.id.menuExit) {
+            finish();
+        } else if (menuItemId == R.id.menuFavourite) {
+            Intent intent = new Intent(this, FavouriteActivity.class);
+            startActivity(intent);
+        }
+        return false;
     }
 }

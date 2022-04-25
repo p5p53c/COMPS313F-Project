@@ -9,9 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
+import edu.hkmu.hongkongschoolinfo.RoomDataBase.DataBase;
+import edu.hkmu.hongkongschoolinfo.RoomDataBase.MyFavourite;
+
 public class ContactDialog extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "URL_MESSAGE";
+    private Button dialog_phone, dialog_website, dialog_favourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,17 +26,30 @@ public class ContactDialog extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        Button dialog_phone = findViewById(R.id.dialog_phone);
-        Button dialog_website = findViewById(R.id.dialog_website);
+        dialog_phone = findViewById(R.id.dialog_phone);
+        dialog_website = findViewById(R.id.dialog_website);
+        dialog_favourite = findViewById(R.id.dialog_favourite);
 
         int schoolPhoneNumber = 0;
+        long schoolNo = Long.parseLong(intent.getStringExtra("schoolno"));
 
         try {
-            schoolPhoneNumber = Integer.parseInt(intent.getStringExtra("phone"));
+            schoolPhoneNumber = Integer.parseInt(intent.getStringExtra("phone").replaceAll("\\s+",""));
         } catch (Exception e) {
             dialog_phone.setVisibility(View.GONE);
 
         }
+
+        new Thread(() -> {
+            List<MyFavourite> favourites = DataBase.getInstance(this).getDataUao().findDataBySchoolNo(schoolNo);
+            if (favourites.size() == 0) {
+                addtofavourite(schoolNo);
+            } else {
+                dialog_favourite.setText("Remove from favourite");
+                removefromfavourite(schoolNo);
+            }
+        }).start();
+
 
         String schoolWebsite = intent.getStringExtra("website");
 
@@ -55,5 +74,24 @@ public class ContactDialog extends AppCompatActivity {
             startActivity(urlIntent);
         });
 
+    }
+
+    private void addtofavourite(long schoolNo) {
+        dialog_favourite.setOnClickListener(v -> {
+            new Thread(() -> {
+                MyFavourite favourite = new MyFavourite(schoolNo);
+                DataBase.getInstance(this).getDataUao().insertData(favourite);
+            }).start();
+            finish();
+        });
+    }
+
+    private void removefromfavourite(long schoolNo) {
+        dialog_favourite.setOnClickListener(v -> {
+            new Thread(() -> {
+                DataBase.getInstance(this).getDataUao().deleteData(schoolNo);
+            }).start();
+            finish();
+        });
     }
 }

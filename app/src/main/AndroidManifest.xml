@@ -14,6 +14,9 @@
         android:theme="@style/Theme.HongKongSchoolInfo"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".FavouriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".WebViewActivity"
             android:exported="false" />
         <activity
