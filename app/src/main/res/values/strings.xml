@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hong Kong School Info (Favourite Beta)</string>
+    <string name="app_name">Hong Kong School Info</string>
     <string name="id">School No : </string>
     <string name="category">Category : </string>
     <string name="name">Name : </string>
